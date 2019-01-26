@@ -2,7 +2,7 @@
 #  Entry for DeltaHacks V
 #  Tim Choy, Sam Crawford, Lewis Rafuse, and Cameron Dufault
 
-def main()
+def main():
     print("To implement")
 
 main()
