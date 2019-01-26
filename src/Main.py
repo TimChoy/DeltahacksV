@@ -21,11 +21,6 @@ def main():
     
     printList = readGraynne(values[0])
 
-    for i in printList:
-        for j in i:
-            print(str(j), end=" ")
-        print("\n")
-
     #garbage = input("Press 'Enter' to continue...")
 
     darkPhase = 0.2614223074892 # For testing
@@ -38,5 +33,7 @@ def main():
 
     outWindow = sg.Window('Graynne GUI').Layout(outDialogue)
     button = outWindow.Read()
+    
+    writeGraynne(printList)
 
 main()
