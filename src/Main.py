@@ -14,4 +14,6 @@ def main():
             print(str(j), end=" ")
         print("\n")
 
+    writeGraynne(printList)
+
 main()

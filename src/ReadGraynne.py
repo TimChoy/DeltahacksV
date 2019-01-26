@@ -11,6 +11,10 @@ from PIL import Image
 #  Description: Takes a string of the name of image and returns a 2D array of 
 #  grayscale values of the image. Grayscale pixel value ranges from 0 to 255
 def readGraynne(image_name):
-    img = Image.open(image_name, 'r').convert('L')
+    img = Image.open(image_name, 'r').convert('I')
     data = asarray(img)
     return data
+
+def writeGraynne(data):
+    img = Image.fromarray(data, "I")
+    img.save("output.png")
