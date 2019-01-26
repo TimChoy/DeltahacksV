@@ -12,6 +12,5 @@ from PIL import Image
 #  grayscale values of the image. Grayscale pixel value ranges from 0 to 255
 def readGraynne(image_name):
     img = Image.open(image_name, 'r').convert('L')
-    row, col = img.size
     data = asarray(img)
     return data
