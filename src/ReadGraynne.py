@@ -1,4 +1,5 @@
 ## ReadGraynne Module
+#  Reads image info for Graynne program
 #  Entry for DeltaHacks V
 #  Tim Choy, Sam Crawford, Lewis Rafuse, and Cameron Dufault
 
