@@ -14,3 +14,9 @@ def readGraynne(image_name):
     img = Image.open(image_name, 'r').convert('L')
     data = asarray(img)
     return data
+
+# For Tim :)
+for i in printList:
+    for j in i:
+        print(str(j), end=" ")
+    print("\n")
