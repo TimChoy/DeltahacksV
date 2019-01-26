@@ -4,29 +4,26 @@
 
 #import sys
 import PySimpleGUI as sg
-#from ReadGraynne import *
+from ReadGraynne import *
 
 def main():
     layout = [      
-            [sg.Text('Please enter your Name, Address, Phone')],      
-            [sg.Text('Name', size=(15, 1)), sg.InputText('name')],      
-            [sg.Text('Address', size=(15, 1)), sg.InputText('address')],      
-            [sg.Text('Phone', size=(15, 1)), sg.InputText('phone')],      
-            [sg.Submit(), sg.Cancel()]      
-            ]
+             [sg.Text("Choose an Input File", size=(35, 1))], 
+             [sg.Text("Input File", size=(15,1), auto_size_text=False, justification="right"),
+              sg.InputText("Select File"), sg.FileBrowse()],     
+             [sg.Submit(), sg.Cancel()]    
+             ]
     
     window = sg.Window('Graynne GUI').Layout(layout)
     button, values = window.Read()
 
     print(button, values[0])
+    
+    printList = readGraynne(values[0])
 
-
-    # imgDir = sys.argv[1]
-    # printList = readGraynne(imgDir)
-
-    # for i in printList:
-    #     for j in i:
-    #         print(str(j), end=" ")
-    #     print("\n")
+    for i in printList:
+        for j in i:
+            print(str(j), end=" ")
+        print("\n")
 
 main()
