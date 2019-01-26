@@ -19,7 +19,7 @@ def readGraynne(image_name):
 def flatten(list2D):
     toFlatten = copy(list2D)
     flattened = []
-    for i in range(length(toFlatten)):
-        for j in range(length(toFlatten[i])):
+    for i in range(len(toFlatten)):
+        for j in range(len(toFlatten[i])):
             flattened.append(toFlatten[i][j])
     return flattened
