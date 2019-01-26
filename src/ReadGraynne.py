@@ -4,7 +4,7 @@
 
 from PIL import Image
 
-def main():
+def ReadGraynne(image_name):
     img = Image.open("the/path/to/image")
 
 main()
