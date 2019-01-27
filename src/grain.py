@@ -32,38 +32,35 @@ pixelsFrame = pd.DataFrame(pixels_dict)
 pixelsFrame['originalRGB'] = readRGB
 pixelsFrame['solved Cat']  = solvedCat
 
-pixelsFrame['dif5Right'] = fiveRight(readRGB)
-pixelsFrame['dif10Right'] = tenRight(readRGB)
+# Convention for order: up, left, right, down
 
-pixelsFrame['dif5Up'] = fiveUp(readRGB)
-pixelsFrame['dif10Up'] = tenUp(readRGB)
+pixelsFrame['diffFiveUp']    = fiveUp(readRGB)
+pixelsFrame['diffTenUp']     = tenUp(readRGB)
+pixelsFrame['diffFiveLeft']  = fiveLeft(readRGB)
+pixelsFrame['diffTenLeft']   = tenLeft(readRGB)
+pixelsFrame['diffFiveRight'] = fiveRight(readRGB)
+pixelsFrame['diffTenRight']  = tenRight(readRGB)
+pixelsFrame['diffFiveDown']  = fiveDown(readRGB)
+pixelsFrame['diffTenDown']   = tenDown(readRGB)
 
-pixelsFrame['dif5Left'] = fiveLeft(readRGB)
-pixelsFrame['dif10Left'] = tenLeft(readRGB)
+pixelsFrame['diffFiveUpLeft']  = fiveUpLeft(readRGB)
+pixelsFrame['diffTenUpLeft']   = tenUpLeft(readRGB)
+pixelsFrame['diffFiveUpRight'] = fiveUpRight(readRGB)
+pixelsFrame['diffTenUpRight']  = tenUpRight(readRGB)
 
-pixelsFrame['dif5down'] = fiveDown(readRGB)
-pixelsFrame['dif10down'] = tenDown(readRGB)
+pixelsFrame['diffFiveUp'].fillna(pixelsFrame['diffFiveUp'].mean(), inplace = True)
+pixelsFrame['diffTenUp'].fillna(pixelsFrame['diffTenUp'].mean(), inplace = True)
+pixelsFrame['diffFiveLeft'].fillna(pixelsFrame['diffFiveLeft'].mean(), inplace = True)
+pixelsFrame['diffTenLeft'].fillna(pixelsFrame['diffTenLeft'].mean(), inplace = True)
+pixelsFrame['diffFiveRight'].fillna(pixelsFrame['diffFiveRight'].mean(),inplace = True)
+pixelsFrame['diffTenRight'].fillna(pixelsFrame['diffTenRight'].mean(), inplace = True)
+pixelsFrame['diffFiveDown'].fillna(pixelsFrame['diffFiveDown'].mean(), inplace= True)
+pixelsFrame['diffTenDown'].fillna(pixelsFrame['diffTenDown'].mean(), inplace = True)
 
-pixelsFrame['dif5UpRight'] = fiveUpRight(readRGB)
-pixelsFrame['dif10UpRight'] = tenUpRight(readRGB)
-
-pixelsFrame['dif5UpLeft'] = fiveUpLeft(readRGB)
-pixelsFrame['dif10UpLeft'] = tenUpLeft(readRGB)
-
-pixelsFrame['dif5Right'].fillna(pixelsFrame['dif5Right'].mean(),inplace = True)
-pixelsFrame['dif10Right'].fillna(pixelsFrame['dif10Right'].mean(), inplace = True)
-pixelsFrame['dif5Up'].fillna(pixelsFrame['dif5Up'].mean(), inplace = True)
-pixelsFrame['dif10Up'].fillna(pixelsFrame['dif10Up'].mean(), inplace = True)
-pixelsFrame['dif5Left'].fillna(pixelsFrame['dif5Left'].mean(), inplace = True)
-pixelsFrame['dif10Left'].fillna(pixelsFrame['dif10Left'].mean(), inplace = True)
-
-pixelsFrame['dif5down'].fillna(pixelsFrame['dif5down'].mean(), inplace= True)
-pixelsFrame['dif10down'].fillna(pixelsFrame['dif10down'].mean(), inplace = True)
-
-pixelsFrame['dif5UpRight'].fillna(pixelsFrame['dif5UpRight'].mean(), inplace= True)
-pixelsFrame['dif10UpRight'].fillna(pixelsFrame['dif10UpRight'].mean(), inplace= True)
-pixelsFrame['dif5UpLeft'].fillna(pixelsFrame['dif5UpLeft'].mean(), inplace= True)
-pixelsFrame['dif10UpLeft'].fillna(pixelsFrame['dif10UpLeft'].mean(), inplace= True)
+pixelsFrame['diffFiveUpLeft'].fillna(pixelsFrame['diffFiveUpLeft'].mean(), inplace= True)
+pixelsFrame['diffTenUpLeft'].fillna(pixelsFrame['diffTenUpLeft'].mean(), inplace= True)
+pixelsFrame['diffFiveUpRight'].fillna(pixelsFrame['diffFiveUpRight'].mean(), inplace= True)
+pixelsFrame['diffTenUpRight'].fillna(pixelsFrame['diffTenUpRight'].mean(), inplace= True)
 
 count = 0
 def category(data):
@@ -83,23 +80,20 @@ def categoryYo(data):
 
 pixelsFrame["solved Cat"] = pixelsFrame["solved Cat"].apply(category)
 
-pixelsFrame["dif10Right"] = pixelsFrame["dif10Right"].apply(categoryYo)
-pixelsFrame["dif5Right"] = pixelsFrame["dif5Right"].apply(categoryYo)
+pixelsFrame["diffFiveUp"]    = pixelsFrame["diffFiveUp"].apply(categoryYo)
+pixelsFrame["diffTenUp"]     = pixelsFrame["diffTenUp"].apply(categoryYo)
+pixelsFrame["diffFiveLeft"]  = pixelsFrame["diffFiveLeft"].apply(categoryYo)
+pixelsFrame["diffTenLeft"]   = pixelsFrame["diffTenLeft"].apply(categoryYo)
+pixelsFrame["diffFiveRight"] = pixelsFrame["diffFiveRight"].apply(categoryYo)
+pixelsFrame["diffTenRight"]  = pixelsFrame["diffTenRight"].apply(categoryYo)
+pixelsFrame["diffFiveDown"]  = pixelsFrame["diffFiveDown"].apply(categoryYo)
+pixelsFrame["diffTenDown"]   = pixelsFrame["diffTenDown"].apply(categoryYo)
 
-pixelsFrame["dif10Left"] = pixelsFrame["dif10Left"].apply(categoryYo)
-pixelsFrame["dif5Left"] = pixelsFrame["dif5Left"].apply(categoryYo)
+pixelsFrame['diffFiveUpLeft']  = pixelsFrame['diffFiveUpLeft'].apply(categoryYo)
+pixelsFrame['diffTenUpLeft']   = pixelsFrame['diffTenUpLeft'].apply(categoryYo)
+pixelsFrame['diffFiveUpRight'] = pixelsFrame['diffFiveUpRight'].apply(categoryYo)
+pixelsFrame['diffTenUpRight']  = pixelsFrame['diffTenUpRight'].apply(categoryYo)
 
-pixelsFrame["dif10Up"] = pixelsFrame["dif10Up"].apply(categoryYo)
-pixelsFrame["dif5Up"] = pixelsFrame["dif5Up"].apply(categoryYo)
-
-pixelsFrame["dif10down"] = pixelsFrame["dif10down"].apply(categoryYo)
-pixelsFrame["dif5down"] = pixelsFrame["dif5down"].apply(categoryYo)
-
-pixelsFrame['dif10UpRight'] = pixelsFrame['dif10UpRight'].apply(categoryYo)
-pixelsFrame['dif5UpRight'] = pixelsFrame['dif5UpRight'].apply(categoryYo)
-
-pixelsFrame['dif10UpLeft'] = pixelsFrame['dif10UpLeft'].apply(categoryYo)
-pixelsFrame['dif5UpLeft'] = pixelsFrame['dif5UpLeft'].apply(categoryYo)
 
 # pixelsFrame.to_csv("output.csv")
 
