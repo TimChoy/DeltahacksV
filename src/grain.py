@@ -15,7 +15,7 @@ from FileIO import *
 
 readRGB     = []
 solvedCat   = []
-numOfPics   = 1
+numOfPics   = 20
 
 for i in range(numOfPics):
     readRGB.append(readGraynne("../../fake_microstructure/Target_1/image_" + str(i) + ".png"))
@@ -34,7 +34,7 @@ y = dataFrame['solved Cat']
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random_state=42)
 
 ##This is for testing
-predictionImage = genImageDataFrame(readGraynne("../../fake_microstructure/Target_1/image_0.png"))
+predictionImage = genImageDataFrame(readGraynne("../../fake_microstructure/Target_1/image_43.png"))
 logmodel = LogisticRegression()
 logmodel.fit(x_train, y_train)
 predictions = logmodel.predict(predictionImage)

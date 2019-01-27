@@ -11,7 +11,7 @@ def main():
         [sg.Text("Choose an Input File", size=(35, 1))], 
         [sg.Text("Input File", size=(15,1), auto_size_text=False, justification="right"),
          sg.InputText("Select File"), sg.FileBrowse()],     
-        [sg.CloseButton("Submit"), sg.CloseButton("Cancel")]    
+        [sg.CloseButton("Submit"), sg.CloseButton("Cancel")]
     ]
     
     fileWindow = sg.Window('Graynne GUI').Layout(fileDialogue)
