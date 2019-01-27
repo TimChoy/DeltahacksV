@@ -22,22 +22,32 @@ def main():
         [sg.CloseButton("Select")]
     ]
 
-    targetWindow = sg.Window('Graynne GUI').Layout(targetDialogue)
+    targetWindow = sg.Window('Graynne').Layout(targetDialogue)
     button, values = targetWindow.Read()
 
     target = values.index(True) + 1 # to be used to determine pickle file
 
-    fileDialogue = [      
-        [sg.Text("Choose an Input File", size=(35, 1))], 
-        [sg.Text("Input File", size=(15,1), auto_size_text=False, justification="right"),
-         sg.InputText("Select File"), sg.FileBrowse()],     
-        [sg.CloseButton("Select"), sg.CloseButton("Cancel")]
-    ]
-    
-    fileWindow = sg.Window('Graynne GUI').Layout(fileDialogue)
-    button, values = fileWindow.Read()
+    fileName = "Select File"
+    while fileName == "Select File":
+        fileDialogue = [      
+            [sg.Text("Choose an Input File", size=(35, 1))], 
+            [sg.Text("Input File", size=(15,1), auto_size_text=False, justification="right"),
+             sg.InputText("Select File"), sg.FileBrowse()],     
+            [sg.CloseButton("Select"), sg.CloseButton("Cancel")]
+        ]
+        
+        fileWindow = sg.Window('Graynne').Layout(fileDialogue)
+        button, values = fileWindow.Read()
 
-    fileName = values[0]
+        fileName = values[0]
+        if fileName == "Select File":
+            wrongDialogue = [
+                [sg.Text("You must specify a file path.")],
+                [sg.CloseButton("OK")]
+            ]
+
+            wrongWindow = sg.Window('Graynne').Layout(wrongDialogue)
+            button = wrongWindow.Read()
 
     if fileName[-6] == "_":
         num = int(fileName[-5])
@@ -63,7 +73,7 @@ def main():
         [sg.CloseButton("OK")]
     ]
 
-    outWindow = sg.Window('Graynne GUI').Layout(outDialogue)
+    outWindow = sg.Window('Graynne').Layout(outDialogue)
     button = outWindow.Read()
 
 main()
