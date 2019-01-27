@@ -40,18 +40,3 @@ logmodel.fit(x_train, y_train)
 predictions = logmodel.predict(x_test)
 
 print(confusion_matrix(y_test, predictions))
-
-# pixelsFrame.to_csv("output.csv")
-
-# file = "output.csv"
-# chunksize = 10 ** 6
-# pixelsFrame = pd.read_csv(file, chunksize=chunksize)
-
-# pixelsFrame = pd.DataFrame()
-# with open(file) as fl:
-#     chunk_iter = pd.read_csv(fl, chunksize = chunksize)
-#     for chunk in chunk_iter:
-#         chunk = chunk[chunk['column1'] > 180]
-#         pixelsFrame = pd.concat([pixelsFrame,chunk])
-
-# print("We read it good :)")
