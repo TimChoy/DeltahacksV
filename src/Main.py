@@ -39,19 +39,26 @@ def main():
     fileWindow = sg.Window('Graynne GUI').Layout(fileDialogue)
     button, values = fileWindow.Read()
 
-    filePath = values[0]
-    print(button, filePath)
+    fileName = values[0]
+    print(button, fileName)
 
-    if filePath[-6] == "_":
-        num = int(filePath[-5])
-    elif filePath[-7] == "_":
-        num = int(filePath[-6:-4])
-    elif filePath[-8] == "_":
-        num = int(filePath[-7:-4]) 
+    # gets num
+    if fileName[-6] == "_":
+        num = int(fileName[-5])
+        fileRRGB = fileName[:-5]
+        fileMask = fileName[:-5]
+    elif fileName[-7] == "_":
+        fileRRGB = fileName[:-6]
+        fileMask = fileName[:-6]
+        num = int(fileName[-6:-4])
+    elif fileName[-8] == "_":
+        fileRRGB = fileName[:-7]
+        fileMask = fileName[:-7]
+        num = int(fileName[-7:-4]) 
     else:
         print("BAD") # TODO: raise exception
     
-    printList = readGraynne(filePath)
+    printList = readGraynne(fileName)
 
     #garbage = input("Press 'Enter' to continue...")
 
