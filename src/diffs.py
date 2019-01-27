@@ -1,3 +1,10 @@
+# diffs.py
+
+from numpy import *
+import pandas as pd
+from PIL import Image
+from copy import *
+
 def fiveUp(readRGB):
     diff = empty(len(readRGB))
     for i in range(1024*5):
