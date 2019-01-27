@@ -5,6 +5,7 @@
 #import sys
 import PySimpleGUI as sg
 
+from Confusion import *
 from DataFrame import genDataFrame
 from FileIO import *
 from Process import *
@@ -51,14 +52,14 @@ def main():
     if fileName[-6] == "_":
         num = int(fileName[-5])
         fileRRGB = fileName[:-5]
-        fileMask = fileName[:-5]
+        fileMask = fileName[:-11] + "p2mask_np_"
     elif fileName[-7] == "_":
         fileRRGB = fileName[:-6]
-        fileMask = fileName[:-6]
+        fileMask = fileName[:-12] + "p2mask_np_"
         num = int(fileName[-6:-4])
     elif fileName[-8] == "_":
         fileRRGB = fileName[:-7]
-        fileMask = fileName[:-7]
+        fileMask = fileName[:-13] + "p2mask_np_"
         num = int(fileName[-7:-4]) 
     else:
         print("BAD") # TODO: raise exception
@@ -67,13 +68,18 @@ def main():
     mask        = genMask(fileMask, pics)
     dataFrame   = genDataFrame(readRGB, mask)
 
-    printList = readGraynne(fileName)
+    x_train, x_test, y_train, y_test = genTrainTest(dataFrame)
+    logmodel    = genLogModel(x_train, y_train)
+    predictions = genPredictions(fileName, logmodel)
+    conMatrix   = genConMatrix(logmodel, x_test, y_test)
 
-    #garbage = input("Press 'Enter' to continue...")
+    writeGraynne(predictions)
 
-    darkPhase = 0.2614223074892 # For testing
-
-    outString = "The percentage of dark phase in the specified image is {:.2%}".format(darkPhase)
+    print(conMatrix)
+    garbage = input("Press 'Enter' to continue...")
+    
+    #outString = "The percentage of dark phase in the specified image is {:.2%}".format(calcAccuracy(conMatrix))
+    outString = "The accuracy of this run is {:.2%}".format(calcAccuracy(conMatrix))
     outDialogue = [
         [sg.Text(outString)],
         [sg.CloseButton("OK")]
@@ -81,7 +87,5 @@ def main():
 
     outWindow = sg.Window('Graynne GUI').Layout(outDialogue)
     button = outWindow.Read()
-    
-    writeGraynne(printList)
 
 main()
