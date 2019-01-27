@@ -12,6 +12,7 @@ from sklearn.metrics import confusion_matrix
 from DataFrame import *
 from Confusion import calcAccuracy
 from FileIO import *
+import pickle
 
 readRGB     = []
 solvedCat   = []
@@ -37,11 +38,17 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random
 predictionImage = genImageDataFrame(readGraynne("../../fake_microstructure/Target_1/image_43.png"))
 logmodel = LogisticRegression()
 logmodel.fit(x_train, y_train)
+pkl_filename = "target_1_model.pkl"
+with open(pkl_filename, 'wb') as file:
+    pickle.dump(logmodel, file)
+
 predictions = logmodel.predict(predictionImage)
+
+
 
 writeGraynne(predictions)
 
 
-conMatrix = confusion_matrix(y_test, logmodel.predict(x_test))
-print(conMatrix)
-print("The accuracy of this run is {:.2%}".format(calcAccuracy(conMatrix)))
+#conMatrix = confusion_matrix(y_test, predictions)
+#print(conMatrix)
+#print("The accuracy of this run is {:.2%}".format(calcAccuracy(conMatrix)))
