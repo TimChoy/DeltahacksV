@@ -1,4 +1,4 @@
-# grain.py
+# MainNoGUI.py
 
 from Confusion import *
 from DataFrame import genDataFrame
@@ -6,42 +6,41 @@ from FileIO import writeGraynne
 from Process import *
 
 def main():
-    # Assumes Target 1
+    invalid = True
+    while invalid:
+        print("Which kind of image would you like to measure?")
+        print("\t 1) Standard")
+        print("\t 2) With Particles")
+        print("\t 3) Poor Lighting + Particles\n")
+        tarInput = input("Enter selection: ")
+        try:
+            target = int(tarInput)
+            if 0 < target and target < 4:
+                invalid = False
+            else:
+                print("Input must be between 1 and 3 (inclusive)\n")
+        except:
+            print("Input must be an integer\n")
 
-    # commented for testing
-    # invalid = True
-    # while invalid:
-    #     numInput = input("Enter the image number you would like to analyze: ")
-    #     try:
-    #         num = int(numInput)
-    #         if 0 <= num and num < 200:
-    #             invalid = False
-    #         else:
-    #             print("Input must be between 0 and 199 (inclusive)\n")
-    #     except:
-    #         print("Input must be an integer\n")
+    invalid = True
+    while invalid:
+        numInput = input("Enter the image number you would like to analyze: ")
+        try:
+            num = int(numInput)
+            if 0 <= num and num < 200:
+                invalid = False
+            else:
+                print("Input must be between 0 and 199 (inclusive)\n")
+        except:
+            print("Input must be an integer\n")
 
-    num = 0 # for testing
+    fileName = "../../fake_microstructure/Target_" + str(target) + "/image_" + str(num) + ".png"
 
-    # Assumes Target 1
-    pics     = 1
-    #fileRRGB = "../../fake_microstructure/Target_1/image_"
-    #fileMask = "../../fake_microstructure/Target_1/p2mask_np_"
-    fileName = "../../fake_microstructure/Target_2/image_" + str(num) + ".png"
-
-    # readRGB     = genReadRGB(fileRRGB, pics)
-    # mask        = genMask(fileMask, pics)
-    # dataFrame   = genDataFrame(readRGB, mask)
-
-    # x_train, x_test, y_train, y_test = genTrainTest(dataFrame)
     logmodel    = genLogModel()
     predictions = genPredictions(fileName, logmodel)
-    #conMatrix   = genConMatrix(logmodel, x_test, y_test)
 
     fractionDark = writeGraynne(predictions)
 
-    #print(conMatrix)
-    #print("The accuracy of this run is {:.2%}".format(calcAccuracy(conMatrix)))
     print("The fraction of dark phase in the specified image is {:.3}, and the output has been written to: ".format(fractionDark))
     print("\t../../DeltaHacks V/src/output.png")
 
