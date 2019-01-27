@@ -73,15 +73,16 @@ def main():
     predictions = genPredictions(fileName, logmodel)
     conMatrix   = genConMatrix(logmodel, x_test, y_test)
 
-    writeGraynne(predictions)
+    fractionDark = writeGraynne(predictions)
 
-    print(conMatrix)
-    garbage = input("Press 'Enter' to continue...")
+    #print(conMatrix)
+    #garbage = input("Press 'Enter' to continue...")
     
-    #outString = "The percentage of dark phase in the specified image is {:.2%}".format(calcAccuracy(conMatrix))
-    outString = "The accuracy of this run is {:.2%}".format(calcAccuracy(conMatrix))
+    outString = "The fraction of dark phase in the specified image is {:.3}, and the output has been written to: \n".format(fractionDark)
+    outFile   = fileRRGB[:-35] + "DeltaHacks V/src/output.png"
+    outStringBad = "The accuracy of this run is {:.2%}".format(calcAccuracy(conMatrix))
     outDialogue = [
-        [sg.Text(outString)],
+        [sg.Text(outString + outFile +  "\n\n" + outStringBad)],
         [sg.CloseButton("OK")]
     ]
 

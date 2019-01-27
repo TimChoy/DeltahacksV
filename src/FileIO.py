@@ -26,10 +26,12 @@ def readGraynne(image_name):
 def writeGraynne(data):
     # data is read-only, so we create a tmp
     tmp = []
+    sum = 0
     for i in range(len(data)):
         if(data[i] == 1):
             tmp.append(65535)
         else:
+            sum += 1
             tmp.append(0)
     #data2D = reshape(tmp, (-1, int(sqrt(data.size))))
     tmp2D = [tmp[i:i+1024] for i in range(0, len(tmp), 1024)]
@@ -39,3 +41,5 @@ def writeGraynne(data):
     #print(data2D)
     img = Image.fromarray(data2D, "I")
     img.save("output.png")
+
+    return sum / 1048576
