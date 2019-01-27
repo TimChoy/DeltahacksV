@@ -49,7 +49,7 @@ def main():
         num = int(fileName[-7:-4]) 
         outPath = fileName[:-42]
     else:
-        print("BAD") # TODO: raise exception
+        raise Exception("Image number not in expected format.")
     
     logmodel    = genLogModel()
     predictions = genPredictions(fileName, logmodel)
