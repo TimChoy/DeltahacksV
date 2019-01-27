@@ -1,2 +1,4 @@
 *.png
 *pycache*
+*.vscode
+output*
