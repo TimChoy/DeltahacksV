@@ -11,22 +11,19 @@ from sklearn.metrics import confusion_matrix
 
 from DataFrame import genDataFrame
 from Confusion import calcAccuracy
+from FileIO import readGraynne
 
 readRGB     = []
 solvedCat   = []
 numOfPics   = 1
-def readGraynne(image_name):
-    img = Image.open(image_name, 'r').convert('I')
-    data = asarray(img)
-    return data
 
 for i in range(numOfPics):
-    readRGB.append(reshape(readGraynne("../../fake_microstructure/Target_1/image_" + str(i) + ".png"), 1048576))
+    readRGB.append(readGraynne("../../fake_microstructure/Target_1/image_" + str(i) + ".png"))
 
 for i in range(numOfPics):
-    solvedCat.append(reshape(readGraynne("../../fake_microstructure/Target_1/p2mask_np_" + str(i) + ".png"), 1048576))
+    solvedCat.append(readGraynne("../../fake_microstructure/Target_1/p2mask_np_" + str(i) + ".png"))
 
-readRGB = reshape(readRGB, int(1048576 * numOfPics))
+readRGB   = reshape(readRGB,  int(1048576 * numOfPics))
 solvedCat = reshape(solvedCat,int(1048576 * numOfPics))
 
 dataFrame = genDataFrame(readRGB, solvedCat)
