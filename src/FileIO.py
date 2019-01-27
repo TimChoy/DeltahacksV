@@ -24,6 +24,7 @@ def readGraynne(image_name):
 #  Description: Takes in a 1D numpy array and turns it into a 2D array, and
 #  outputs a .png file named output.png.
 def writeGraynne(data):
+    # data is read-only, so we create a tmp
     tmp = empty(1048576)
     for i in range(len(data)):
         if(data[i] == 1):
