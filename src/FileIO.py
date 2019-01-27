@@ -25,13 +25,17 @@ def readGraynne(image_name):
 #  outputs a .png file named output.png.
 def writeGraynne(data):
     # data is read-only, so we create a tmp
-    tmp = empty(1048576)
+    tmp = []
     for i in range(len(data)):
         if(data[i] == 1):
-            tmp[i] = 65535
+            tmp.append(65535)
         else:
-            tmp[i] = 0
-    data2D = reshape(tmp, (-1, int(sqrt(data.size))))
+            tmp.append(0)
+    #data2D = reshape(tmp, (-1, int(sqrt(data.size))))
+    tmp2D = [tmp[i:i+1024] for i in range(0, len(tmp), 1024)]
+    data2D = array(tmp2D)
+    #print(tmp)
+    #print(type(tmp[0]))
     #print(data2D)
     img = Image.fromarray(data2D, "I")
     img.save("output.png")
