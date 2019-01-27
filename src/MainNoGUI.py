@@ -65,7 +65,7 @@ def main():
 
     fractionDark = writeGraynne(predictions)
 
-    print("\nThe fraction of dark phase in the specified image is {:.3}, and the output has been written to: ".format(fractionDark))
+    print("\nThe fraction of dark phase in the specified image is {:.5}, and the output has been written to: ".format(fractionDark))
     print("\t../../DeltaHacks V/src/output.png")
 
 main()

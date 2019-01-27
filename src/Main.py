@@ -83,7 +83,7 @@ def main():
 
     fractionDark = writeGraynne(predictions)
 
-    outString = "The fraction of dark phase in the specified image is {:.3}, and the output has been written to: \n".format(fractionDark)
+    outString = "The fraction of dark phase in the specified image is {:.5}, and the output has been written to: \n".format(fractionDark)
     outFile   =  outPath + "DeltaHacks V/src/output.png"
     outDialogue = [
         [sg.Text(outString + outFile)],
