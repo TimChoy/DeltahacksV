@@ -1,5 +1,9 @@
 # MainNoGUI.py
 
+import warnings 
+warnings.filterwarnings("ignore", category=UserWarning)
+# Ignores Warning from higher version of pickle
+
 from Confusion import *
 from DataFrame import genDataFrame
 from FileIO import writeGraynne
@@ -41,7 +45,7 @@ def main():
 
     fractionDark = writeGraynne(predictions)
 
-    print("The fraction of dark phase in the specified image is {:.3}, and the output has been written to: ".format(fractionDark))
+    print("\nThe fraction of dark phase in the specified image is {:.3}, and the output has been written to: ".format(fractionDark))
     print("\t../../DeltaHacks V/src/output.png")
 
 main()
