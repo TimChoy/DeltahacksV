@@ -9,9 +9,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
 
-from DataFrame import genDataFrame
+from DataFrame import *
 from Confusion import calcAccuracy
-from FileIO import readGraynne
+from FileIO import *
 
 readRGB     = []
 solvedCat   = []
@@ -33,9 +33,14 @@ y = dataFrame['solved Cat']
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random_state=42)
 
+##This is for testing
+predictionImage = genImageDataFrame(readGraynne("../../fake_microstructure/Target_1/image_0.png"))
 logmodel = LogisticRegression()
 logmodel.fit(x_train, y_train)
-predictions = logmodel.predict(x_test)
+predictions = logmodel.predict(predictionImage)
+
+writeGraynne(predictions)
+
 
 conMatrix = confusion_matrix(y_test, predictions)
 print(conMatrix)

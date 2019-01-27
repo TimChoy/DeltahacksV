@@ -75,7 +75,7 @@ def genImageDataFrame(readRGB):
     pixelsFrame['diffThreeDown']  = threeDown(readRGB)
     pixelsFrame['diffFiveDown']   = fiveDown(readRGB)
     pixelsFrame['diffTenDown']    = tenDown(readRGB)
-    
+
     pixelsFrame['diffThreeUp'].fillna(pixelsFrame['diffThreeUp'].mean(), inplace = True)
     pixelsFrame['diffFiveUp'].fillna(pixelsFrame['diffFiveUp'].mean(), inplace = True)
     pixelsFrame['diffTenUp'].fillna(pixelsFrame['diffTenUp'].mean(), inplace = True)
@@ -88,7 +88,7 @@ def genImageDataFrame(readRGB):
     pixelsFrame['diffThreeDown'].fillna(pixelsFrame['diffThreeDown'].mean(), inplace= True)
     pixelsFrame['diffFiveDown'].fillna(pixelsFrame['diffFiveDown'].mean(), inplace= True)
     pixelsFrame['diffTenDown'].fillna(pixelsFrame['diffTenDown'].mean(), inplace = True)
-    
+
     pixelsFrame["diffThreeUp"]    = pixelsFrame["diffThreeUp"].apply(categoryYo)
     pixelsFrame["diffFiveUp"]     = pixelsFrame["diffFiveUp"].apply(categoryYo)
     pixelsFrame["diffTenUp"]      = pixelsFrame["diffTenUp"].apply(categoryYo)
