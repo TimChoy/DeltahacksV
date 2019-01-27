@@ -5,12 +5,12 @@ from pandas import DataFrame
 
 from DiffCalc import *
 
-def genDataFrame(readRGB, solvedCat):
+def genDataFrame(readRGB, mask):
     pixels_dict = {}
     pixelsFrame = DataFrame(pixels_dict)
 
     pixelsFrame['originalRGB'] = readRGB
-    pixelsFrame['solved Cat']  = solvedCat
+    pixelsFrame['Mask']        = mask
 
     # Convention for order: up, left, right, down
 
@@ -40,7 +40,7 @@ def genDataFrame(readRGB, solvedCat):
     pixelsFrame['diffFiveDown'].fillna(pixelsFrame['diffFiveDown'].mean(), inplace= True)
     pixelsFrame['diffTenDown'].fillna(pixelsFrame['diffTenDown'].mean(), inplace = True)
 
-    pixelsFrame["solved Cat"] = pixelsFrame["solved Cat"].apply(category)
+    pixelsFrame["Mask"] = pixelsFrame["Mask"].apply(category)
 
     pixelsFrame["diffThreeUp"]    = pixelsFrame["diffThreeUp"].apply(categoryYo)
     pixelsFrame["diffFiveUp"]     = pixelsFrame["diffFiveUp"].apply(categoryYo)

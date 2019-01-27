@@ -22,12 +22,12 @@ def genMask(filePath, pics):
     mask = []
     for i in range(pics):
         mask.append(readGraynne(filePath + str(i) + ".png"))
-    mask = reshape(mask,int(1048576 * pics))
+    mask = reshape(mask, int(1048576 * pics))
     return mask
 
 def genTrainTest(dataFrame):
-    x = dataFrame.drop('solved Cat', axis = 1)
-    y = dataFrame['solved Cat']
+    x = dataFrame.drop('Mask', axis = 1)
+    y = dataFrame['Mask']
 
     return train_test_split(x, y, test_size=0.33, random_state=42)
 

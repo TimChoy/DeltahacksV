@@ -25,13 +25,13 @@ def main():
 
     # Assumes Target 1
     pics     = 1
-    filePath = "../../fake_microstructure/Target_1/image_"
+    fileRRGB = "../../fake_microstructure/Target_1/image_"
+    fileMask = "../../fake_microstructure/Target_1/p2mask_np_"
     fileName = "../../fake_microstructure/Target_1/image_" + str(num) + ".png"
 
-    readRGB     = genReadRGB(filePath, pics)
-    mask        = genMask(filePath, pics)
+    readRGB     = genReadRGB(fileRRGB, pics)
+    mask        = genMask(fileMask, pics)
     dataFrame   = genDataFrame(readRGB, mask)
-    print("have dataFrame")
 
     x_train, x_test, y_train, y_test = genTrainTest(dataFrame)
     logmodel    = genLogModel(x_train, y_train)
