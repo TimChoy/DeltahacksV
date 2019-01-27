@@ -13,19 +13,20 @@ from sklearn.metrics import confusion_matrix
 pixels_dict = {}
 readRGB     = []
 solvedCat   = []
+numOfPics   = 20
 def readGraynne(image_name):
     img = Image.open(image_name, 'r').convert('I')
     data = asarray(img)
     return data
 
-for i in range(20):
-    readRGB.append(reshape(readGraynne("../../../fake microstructure/Target 1/image_" + str(i) + ".png"),1048576))
+for i in range(numOfPics):
+    readRGB.append(reshape(readGraynne("../../fake microstructure/Target 1/image_" + str(i) + ".png"), 1048576))
 
-for i in range(20):
-    solvedCat.append(reshape(readGraynne("../../../fake microstructure/Target 1/p2mask_np_" + str(i) + ".png"),1048576))
+for i in range(numOfPics):
+    solvedCat.append(reshape(readGraynne("../../fake microstructure/Target 1/p2mask_np_" + str(i) + ".png"), 1048576))
     
-readRGB = reshape(readRGB, int(20971520))
-solvedCat = reshape(solvedCat,int(20971520))
+readRGB = reshape(readRGB, int(1048576 * numOfPics))
+solvedCat = reshape(solvedCat,int(1048576 * numOfPics))
     
 pixelsFrame = pd.DataFrame(pixels_dict)
 
