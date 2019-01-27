@@ -35,8 +35,3 @@ def writeGraynne(data):
     #print(data2D)
     img = Image.fromarray(data2D, "I")
     img.save("output.png")
-
-
-
-data = readGraynne("../fake_microstructure/Target_1/p1mask_np_10.png")
-writeGraynne(data)
