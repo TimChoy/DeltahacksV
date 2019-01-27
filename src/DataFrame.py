@@ -136,9 +136,13 @@ def category(data):
         return 0
 
 def categoryYo(data):
-    if (data > -3000 and data < 3000):
+    if (data >= -3000 and data <= 3000):
+        return 5
+    elif (-15000 < data < -3000):
+        return 4
+    elif (data < -14999):
+        return 3
+    elif (15000 >= data > 3000):
         return 2
-    elif (data < -3000):
-        return 1
     else:
-        return 0
+        return 1
