@@ -81,6 +81,44 @@ def fiveLeft(readRGB):
             diff[i] = 0
 
     return diff
+def sevenUp(readRGB):
+    diff = empty(len(readRGB))
+    for i in range(1024*7):
+        diff[i] = 0
+    for i in range(1024*7, len(readRGB)):
+        diff[i] =  readRGB[i] - readRGB[i - 7*1024]
+
+    return diff
+def sevenDown(readRGB):
+    diff = empty(len(readRGB))
+    for i in range(1024*(1024-7)):
+        diff[i] = readRGB[i] - readRGB[i + 7*1024]
+    for i in range(1024*(1024-7), len(readRGB)):
+        diff[i] = 0
+
+    return diff
+
+def sevenRight(readRGB):
+    diff = empty(len(readRGB))
+    for i in range(len(readRGB)):
+        if (i % 1024 < 1017):
+            diff[i] = readRGB[i] - readRGB[i + 7]
+        else:
+            diff[i] = 0
+
+    return diff
+
+def sevenLeft(readRGB):
+    diff = empty(len(readRGB))
+    for i in range(len(readRGB)):
+        if (i % 1024 > 6):
+            diff[i] = readRGB[i] - readRGB[i - 7]
+        else:
+            diff[i] = 0
+
+    return diff
+
+
 
 def tenUp(readRGB):
     diff = empty(len(readRGB))
