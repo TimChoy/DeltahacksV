@@ -19,6 +19,7 @@ def main():
         [sg.Radio("Standard", "Target", default=True)],
         [sg.Radio("With Particles", "Target", default=False)],
         [sg.Radio("Poor Lighting + Particles", "Target", default=False)],
+        [sg.Radio("Testing with New Inputs", "Target", default=False)],
         [sg.CloseButton("Select")]
     ]
 
@@ -26,6 +27,22 @@ def main():
     button, values = targetWindow.Read()
 
     target = values.index(True) + 1 # to be used to determine pickle file
+
+    if target == 4:
+        targetDataDialogue = [
+            [sg.Text("Select the target database to utilize:", size=(35, 1))], 
+            [sg.Radio("Standard", "Target", default=True)],
+            [sg.Radio("With Particles", "Target", default=False)],
+            [sg.Radio("Poor Lighting + Particles", "Target", default=False)],
+            [sg.CloseButton("Select")]
+        ]
+
+        targetDataWindow = sg.Window('Graynne').Layout(targetDataDialogue)
+        button, values = targetDataWindow.Read()
+
+        targetData = values.index(True) + 1 # to be used to determine pickle file
+    else:
+        targetData = target
 
     fileName = "Select File"
     while fileName == "Select File":
@@ -61,7 +78,7 @@ def main():
     else:
         raise Exception("Image number not in expected format.")
     
-    logmodel    = genLogModel()
+    logmodel    = genLogModel(targetData)
     predictions = genPredictions(fileName, logmodel)
 
     fractionDark = writeGraynne(predictions)

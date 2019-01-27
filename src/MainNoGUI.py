@@ -15,16 +15,36 @@ def main():
         print("Which kind of image would you like to measure?")
         print("\t 1) Standard")
         print("\t 2) With Particles")
-        print("\t 3) Poor Lighting + Particles\n")
+        print("\t 3) Poor Lighting + Particles")
+        print("\t 4) Testing with New Inputs\n")
         tarInput = input("Enter selection: ")
         try:
             target = int(tarInput)
-            if 0 < target and target < 4:
+            if 0 < target and target < 5:
                 invalid = False
             else:
-                print("Input must be between 1 and 3 (inclusive)\n")
+                print("Input must be between 1 and 4 (inclusive)\n")
         except:
             print("Input must be an integer\n")
+
+    if target == 4:
+        invalid = True
+        while invalid:
+            print("Which kind of target database would you like to use?")
+            print("\t 1) Standard")
+            print("\t 2) With Particles")
+            print("\t 3) Poor Lighting + Particles")
+            tarInput = input("Enter selection: ")
+            try:
+                targetData = int(tarInput)
+                if 0 < targetData and targetData < 4:
+                    invalid = False
+                else:
+                    print("Input must be between 1 and 3 (inclusive)\n")
+            except:
+                print("Input must be an integer\n")
+    else:
+        targetData = target
 
     invalid = True
     while invalid:
@@ -40,7 +60,7 @@ def main():
 
     fileName = "../../fake_microstructure/Target_" + str(target) + "/image_" + str(num) + ".png"
 
-    logmodel    = genLogModel()
+    logmodel    = genLogModel(targetData)
     predictions = genPredictions(fileName, logmodel)
 
     fractionDark = writeGraynne(predictions)

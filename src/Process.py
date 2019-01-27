@@ -32,8 +32,8 @@ from FileIO import readGraynne
 
 #     return train_test_split(x, y, test_size=0.33, random_state=42)
 
-def genLogModel():
-    pkl_filename = "target_2_model.pkl"
+def genLogModel(target):
+    pkl_filename = "target_" + str(target) + "_model.pkl"
     with open(pkl_filename, "rb") as file:
         logmodel = load(file)
     # logmodel = LogisticRegression()
