@@ -31,8 +31,8 @@ def writeGraynne(data):
             tmp[i] = 65535
         else:
             tmp[i] = 0
-    data2D = reshape(ravel(tmp), (-1, int(sqrt(data.size))))
-    print(data2D)
+    data2D = reshape(tmp, (-1, int(sqrt(data.size))))
+    #print(data2D)
     img = Image.fromarray(data2D, "I")
     img.save("output.png")
 
