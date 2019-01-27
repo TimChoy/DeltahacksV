@@ -3,7 +3,7 @@
 
 from pandas import DataFrame
 
-from diffs import *
+from DiffCalc import *
 
 def genDataFrame(readRGB, solvedCat):
     pixels_dict = {}
@@ -14,18 +14,18 @@ def genDataFrame(readRGB, solvedCat):
 
     # Convention for order: up, left, right, down
 
-    pixelsFrame['diffThreeUp']   = threeUp(readRGB)
-    pixelsFrame['diffFiveUp']    = fiveUp(readRGB)
-    pixelsFrame['diffTenUp']     = tenUp(readRGB)
-    pixelsFrame['diffThreeLeft'] = threeLeft(readRGB)
-    pixelsFrame['diffFiveLeft']  = fiveLeft(readRGB)
-    pixelsFrame['diffTenLeft']   = tenLeft(readRGB)
-    pixelsFrame['diffThreeRight'] =threeRight(readRGB)
-    pixelsFrame['diffFiveRight'] = fiveRight(readRGB)
-    pixelsFrame['diffTenRight']  = tenRight(readRGB)
-    pixelsFrame['diffThreeDown'] = threeDown(readRGB)
-    pixelsFrame['diffFiveDown']  = fiveDown(readRGB)
-    pixelsFrame['diffTenDown']   = tenDown(readRGB)
+    pixelsFrame['diffThreeUp']    = threeUp(readRGB)
+    pixelsFrame['diffFiveUp']     = fiveUp(readRGB)
+    pixelsFrame['diffTenUp']      = tenUp(readRGB)
+    pixelsFrame['diffThreeLeft']  = threeLeft(readRGB)
+    pixelsFrame['diffFiveLeft']   = fiveLeft(readRGB)
+    pixelsFrame['diffTenLeft']    = tenLeft(readRGB)
+    pixelsFrame['diffThreeRight'] = threeRight(readRGB)
+    pixelsFrame['diffFiveRight']  = fiveRight(readRGB)
+    pixelsFrame['diffTenRight']   = tenRight(readRGB)
+    pixelsFrame['diffThreeDown']  = threeDown(readRGB)
+    pixelsFrame['diffFiveDown']   = fiveDown(readRGB)
+    pixelsFrame['diffTenDown']    = tenDown(readRGB)
 
     pixelsFrame['diffThreeUp'].fillna(pixelsFrame['diffThreeUp'].mean(), inplace = True)
     pixelsFrame['diffFiveUp'].fillna(pixelsFrame['diffFiveUp'].mean(), inplace = True)
@@ -42,18 +42,18 @@ def genDataFrame(readRGB, solvedCat):
 
     pixelsFrame["solved Cat"] = pixelsFrame["solved Cat"].apply(category)
 
-    pixelsFrame["diffThreeUp"]   = pixelsFrame["diffThreeUp"].apply(categoryYo)
-    pixelsFrame["diffFiveUp"]    = pixelsFrame["diffFiveUp"].apply(categoryYo)
-    pixelsFrame["diffTenUp"]     = pixelsFrame["diffTenUp"].apply(categoryYo)
-    pixelsFrame["diffThreeLeft"]   = pixelsFrame["diffThreeLeft"].apply(categoryYo)
-    pixelsFrame["diffFiveLeft"]  = pixelsFrame["diffFiveLeft"].apply(categoryYo)
-    pixelsFrame["diffTenLeft"]   = pixelsFrame["diffTenLeft"].apply(categoryYo)
+    pixelsFrame["diffThreeUp"]    = pixelsFrame["diffThreeUp"].apply(categoryYo)
+    pixelsFrame["diffFiveUp"]     = pixelsFrame["diffFiveUp"].apply(categoryYo)
+    pixelsFrame["diffTenUp"]      = pixelsFrame["diffTenUp"].apply(categoryYo)
+    pixelsFrame["diffThreeLeft"]  = pixelsFrame["diffThreeLeft"].apply(categoryYo)
+    pixelsFrame["diffFiveLeft"]   = pixelsFrame["diffFiveLeft"].apply(categoryYo)
+    pixelsFrame["diffTenLeft"]    = pixelsFrame["diffTenLeft"].apply(categoryYo)
     pixelsFrame["diffThreeRight"] = pixelsFrame["diffThreeRight"].apply(categoryYo)
-    pixelsFrame["diffFiveRight"] = pixelsFrame["diffFiveRight"].apply(categoryYo)
-    pixelsFrame["diffTenRight"]  = pixelsFrame["diffTenRight"].apply(categoryYo)
+    pixelsFrame["diffFiveRight"]  = pixelsFrame["diffFiveRight"].apply(categoryYo)
+    pixelsFrame["diffTenRight"]   = pixelsFrame["diffTenRight"].apply(categoryYo)
     pixelsFrame["diffThreeDown"]  = pixelsFrame["diffThreeDown"].apply(categoryYo)
-    pixelsFrame["diffFiveDown"]  = pixelsFrame["diffFiveDown"].apply(categoryYo)
-    pixelsFrame["diffTenDown"]   = pixelsFrame["diffTenDown"].apply(categoryYo)
+    pixelsFrame["diffFiveDown"]   = pixelsFrame["diffFiveDown"].apply(categoryYo)
+    pixelsFrame["diffTenDown"]    = pixelsFrame["diffTenDown"].apply(categoryYo)
 
     return pixelsFrame
 
@@ -62,18 +62,19 @@ def genImageDataFrame(readRGB):
     pixelsFrame = DataFrame(pixels_dict)
 
     pixelsFrame['originalRGB'] = readRGB
+
     pixelsFrame['diffThreeUp']    = threeUp(readRGB)
-    pixelsFrame['diffFiveUp']    = fiveUp(readRGB)
-    pixelsFrame['diffTenUp']     = tenUp(readRGB)
+    pixelsFrame['diffFiveUp']     = fiveUp(readRGB)
+    pixelsFrame['diffTenUp']      = tenUp(readRGB)
     pixelsFrame['diffThreeLeft']  = threeLeft(readRGB)
-    pixelsFrame['diffFiveLeft']  = fiveLeft(readRGB)
-    pixelsFrame['diffTenLeft']   = tenLeft(readRGB)
+    pixelsFrame['diffFiveLeft']   = fiveLeft(readRGB)
+    pixelsFrame['diffTenLeft']    = tenLeft(readRGB)
     pixelsFrame['diffThreeRight'] = threeRight(readRGB)
-    pixelsFrame['diffFiveRight'] = fiveRight(readRGB)
-    pixelsFrame['diffTenRight']  = tenRight(readRGB)
+    pixelsFrame['diffFiveRight']  = fiveRight(readRGB)
+    pixelsFrame['diffTenRight']   = tenRight(readRGB)
     pixelsFrame['diffThreeDown']  = threeDown(readRGB)
-    pixelsFrame['diffFiveDown']  = fiveDown(readRGB)
-    pixelsFrame['diffTenDown']   = tenDown(readRGB)
+    pixelsFrame['diffFiveDown']   = fiveDown(readRGB)
+    pixelsFrame['diffTenDown']    = tenDown(readRGB)
     
     pixelsFrame['diffThreeUp'].fillna(pixelsFrame['diffThreeUp'].mean(), inplace = True)
     pixelsFrame['diffFiveUp'].fillna(pixelsFrame['diffFiveUp'].mean(), inplace = True)
@@ -88,18 +89,18 @@ def genImageDataFrame(readRGB):
     pixelsFrame['diffFiveDown'].fillna(pixelsFrame['diffFiveDown'].mean(), inplace= True)
     pixelsFrame['diffTenDown'].fillna(pixelsFrame['diffTenDown'].mean(), inplace = True)
     
-    pixelsFrame["diffThreeUp"]   = pixelsFrame["diffThreeUp"].apply(categoryYo)
-    pixelsFrame["diffFiveUp"]    = pixelsFrame["diffFiveUp"].apply(categoryYo)
-    pixelsFrame["diffTenUp"]     = pixelsFrame["diffTenUp"].apply(categoryYo)
-    pixelsFrame["diffThreeLeft"]   = pixelsFrame["diffThreeLeft"].apply(categoryYo)
-    pixelsFrame["diffFiveLeft"]  = pixelsFrame["diffFiveLeft"].apply(categoryYo)
-    pixelsFrame["diffTenLeft"]   = pixelsFrame["diffTenLeft"].apply(categoryYo)
+    pixelsFrame["diffThreeUp"]    = pixelsFrame["diffThreeUp"].apply(categoryYo)
+    pixelsFrame["diffFiveUp"]     = pixelsFrame["diffFiveUp"].apply(categoryYo)
+    pixelsFrame["diffTenUp"]      = pixelsFrame["diffTenUp"].apply(categoryYo)
+    pixelsFrame["diffThreeLeft"]  = pixelsFrame["diffThreeLeft"].apply(categoryYo)
+    pixelsFrame["diffFiveLeft"]   = pixelsFrame["diffFiveLeft"].apply(categoryYo)
+    pixelsFrame["diffTenLeft"]    = pixelsFrame["diffTenLeft"].apply(categoryYo)
     pixelsFrame["diffThreeRight"] = pixelsFrame["diffThreeRight"].apply(categoryYo)
-    pixelsFrame["diffFiveRight"] = pixelsFrame["diffFiveRight"].apply(categoryYo)
-    pixelsFrame["diffTenRight"]  = pixelsFrame["diffTenRight"].apply(categoryYo)
+    pixelsFrame["diffFiveRight"]  = pixelsFrame["diffFiveRight"].apply(categoryYo)
+    pixelsFrame["diffTenRight"]   = pixelsFrame["diffTenRight"].apply(categoryYo)
     pixelsFrame["diffThreeDown"]  = pixelsFrame["diffThreeDown"].apply(categoryYo)
-    pixelsFrame["diffFiveDown"]  = pixelsFrame["diffFiveDown"].apply(categoryYo)
-    pixelsFrame["diffTenDown"]   = pixelsFrame["diffTenDown"].apply(categoryYo)
+    pixelsFrame["diffFiveDown"]   = pixelsFrame["diffFiveDown"].apply(categoryYo)
+    pixelsFrame["diffTenDown"]    = pixelsFrame["diffTenDown"].apply(categoryYo)
 
     return pixelsFrame
 
