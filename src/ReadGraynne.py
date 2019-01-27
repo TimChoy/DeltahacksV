@@ -17,6 +17,7 @@ from PIL import Image
 def readGraynne(image_name):
     img = Image.open(image_name, 'r').convert('I')
     data = asarray(img)
+    data = reshape(data, 1024*1024)
     return data
 
 ## Function writeGraynne
@@ -24,14 +25,18 @@ def readGraynne(image_name):
 #  Description: Takes in a 1D numpy array and turns it into a 2D array, and
 #  outputs a .png file named output.png.
 def writeGraynne(data):
-    data2D = np.reshape(data, (-1, sqrt(data.size)))
-    for i in range(len(data2D)):
-        if(data2D[i] == 1):
-            data2D[i] = 65536
+    tmp = empty(1024*1024)
+    for i in range(len(data)):
+        if(data[i] == 1):
+            tmp[i] = 65535
         else:
-            data2D[i] = 0
+            tmp[i] = 0
+    data2D = reshape(ravel(tmp), (-1, int(sqrt(data.size))))
+    print(data2D)
     img = Image.fromarray(data2D, "I")
     img.save("output.png")
 
-def flatten(list2D):
-    return [item for sublist in list2D for item in sublist]
+
+
+data = readGraynne("../fake_microstructure/Target_1/p1mask_np_10.png")
+writeGraynne(data)
