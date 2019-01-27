@@ -21,9 +21,4 @@ def writeGraynne(data):
     img.save("output.png")
     
 def flatten(list2D):
-    toFlatten = copy(list2D)
-    flattened = []
-    for i in range(len(toFlatten)):
-        for j in range(len(toFlatten[i])):
-            flattened.append(toFlatten[i][j])
-    return flattened
+    return [item for sublist in list2D for item in sublist]
