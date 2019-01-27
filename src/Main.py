@@ -4,7 +4,10 @@
 
 #import sys
 import PySimpleGUI as sg
-from ReadGraynne import *
+
+from DataFrame import genDataFrame
+from FileIO import *
+from Process import *
 
 def main():
 
@@ -40,7 +43,9 @@ def main():
     button, values = fileWindow.Read()
 
     fileName = values[0]
-    print(button, fileName)
+    #print(button, fileName)
+
+    pics = 1
 
     # gets num
     if fileName[-6] == "_":
@@ -58,6 +63,10 @@ def main():
     else:
         print("BAD") # TODO: raise exception
     
+    readRGB     = genReadRGB(fileRRGB, pics)
+    mask        = genMask(fileMask, pics)
+    dataFrame   = genDataFrame(readRGB, mask)
+
     printList = readGraynne(fileName)
 
     #garbage = input("Press 'Enter' to continue...")
