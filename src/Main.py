@@ -57,7 +57,7 @@ def main():
         button, values = fileWindow.Read()
 
         fileName = values[0]
-        if fileName == "Select File":
+        if fileName == "Select File" and button == "Select":
             wrongDialogue = [
                 [sg.Text("You must specify a file path.")],
                 [sg.CloseButton("OK")]
@@ -65,6 +65,8 @@ def main():
 
             wrongWindow = sg.Window('Graynne').Layout(wrongDialogue)
             button = wrongWindow.Read()
+        elif button == "Cancel":
+            exit()
 
     if fileName[-6] == "_":
         num = int(fileName[-5])
