@@ -1,47 +1,46 @@
 # grain.py
 
-from numpy import *
-import pandas as pd
-from PIL import Image
-from copy import *
+from Confusion import *
+from DataFrame import genDataFrame
+from FileIO import writeGraynne
+from Process import *
 
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import confusion_matrix
+def main():
+    # Assumes Target 1
 
-from DataFrame import *
-from Confusion import calcAccuracy
-from FileIO import *
+    # commented for testing
+    # invalid = True
+    # while invalid:
+    #     numInput = input("Enter the image number you would like to analyze: ")
+    #     try:
+    #         num = int(numInput)
+    #         if 0 <= num and num < 200:
+    #             invalid = False
+    #         else:
+    #             print("Input must be between 0 and 199 (inclusive)\n")
+    #     except:
+    #         print("Input must be an integer\n")
 
-readRGB     = []
-solvedCat   = []
-numOfPics   = 20
+    num = 0 # for testing
 
-for i in range(numOfPics):
-    readRGB.append(readGraynne("../../fake_microstructure/Target_1/image_" + str(i) + ".png"))
+    # Assumes Target 1
+    pics     = 1
+    filePath = "../../fake_microstructure/Target_1/image_"
+    fileName = "../../fake_microstructure/Target_1/image_" + str(num) + ".png"
 
-for i in range(numOfPics):
-    solvedCat.append(readGraynne("../../fake_microstructure/Target_1/p2mask_np_" + str(i) + ".png"))
+    readRGB     = genReadRGB(filePath, pics)
+    mask        = genMask(filePath, pics)
+    dataFrame   = genDataFrame(readRGB, mask)
+    print("have dataFrame")
 
-readRGB   = reshape(readRGB,  int(1048576 * numOfPics))
-solvedCat = reshape(solvedCat,int(1048576 * numOfPics))
+    x_train, x_test, y_train, y_test = genTrainTest(dataFrame)
+    logmodel    = genLogModel(x_train, y_train)
+    predictions = genPredictions(fileName, logmodel)
+    conMatrix   = genConMatrix(logmodel, x_test, y_test)
 
-dataFrame = genDataFrame(readRGB, solvedCat)
+    writeGraynne(predictions)
 
-x = dataFrame.drop('solved Cat', axis = 1)
-y = dataFrame['solved Cat']
+    print(conMatrix)
+    print("The accuracy of this run is {:.2%}".format(calcAccuracy(conMatrix)))
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random_state=42)
-
-##This is for testing
-predictionImage = genImageDataFrame(readGraynne("../../fake_microstructure/Target_1/image_43.png"))
-logmodel = LogisticRegression()
-logmodel.fit(x_train, y_train)
-predictions = logmodel.predict(predictionImage)
-
-writeGraynne(predictions)
-
-
-conMatrix = confusion_matrix(y_test, logmodel.predict(x_test))
-print(conMatrix)
-print("The accuracy of this run is {:.2%}".format(calcAccuracy(conMatrix)))
+main()
