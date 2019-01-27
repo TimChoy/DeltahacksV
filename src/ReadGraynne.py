@@ -19,6 +19,10 @@ def readGraynne(image_name):
     data = asarray(img)
     return data
 
+## Function writeGraynne
+#  Parameter data: a numpy 1D array
+#  Description: Takes in a 1D numpy array and turns it into a 2D array, and 
+#  outputs a .png file named output.png.
 def writeGraynne(data):
     data2D = np.reshape(data, (-1, sqrt(data.size)))
     img = Image.fromarray(data2D, "I")
