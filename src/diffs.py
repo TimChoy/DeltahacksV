@@ -9,6 +9,10 @@ def fiveUp(readRGB):
 
 def fiveDown(readRGB):
     diff = empty(len(readRGB))
+    for i in range(1024*(1024-5)):
+        diff[i] = readRGB[i] - readRGB[i + 5*1024]
+    for i in range(1024*(1024-5), len(readRGB)):
+        diff[i] = 0
 
     return diff
 
@@ -43,6 +47,10 @@ def tenUp(readRGB):
 
 def tenDown(readRGB):
     diff = empty(len(readRGB))
+    for i in range(1024*(1024-10)):
+        diff[i] = readRGB[i] - readRGB[i + 10*1024]
+    for i in range(1024*(1024-10), len(readRGB)):
+        diff[i] = 0
 
     return diff
 
