@@ -24,10 +24,10 @@ for i in range(numOfPics):
 
 for i in range(numOfPics):
     solvedCat.append(reshape(readGraynne("../../fake_microstructure/Target_1/p2mask_np_" + str(i) + ".png"), 1048576))
-    
+
 readRGB = reshape(readRGB, int(1048576 * numOfPics))
 solvedCat = reshape(solvedCat,int(1048576 * numOfPics))
-    
+
 pixelsFrame = pd.DataFrame(pixels_dict)
 
 pixelsFrame['originalRGB'] = readRGB
@@ -70,7 +70,7 @@ def category(data):
     else:
         count = 1
         return 0
-    
+
 def categoryYo(data):
     if (data > -3000 and data < 3000):
         return 2
@@ -119,5 +119,9 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random
 logmodel = LogisticRegression()
 logmodel.fit(x_train, y_train)
 predictions = logmodel.predict(x_test)
+
+print(type(x_test))
+print(predictions)
+print(x_test)
 
 print(confusion_matrix(y_test, predictions))
