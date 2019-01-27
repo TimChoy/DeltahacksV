@@ -42,6 +42,6 @@ predictions = logmodel.predict(predictionImage)
 writeGraynne(predictions)
 
 
-conMatrix = confusion_matrix(y_test, predictions)
+conMatrix = confusion_matrix(y_test, logmodel.predict(x_test))
 print(conMatrix)
 print("The accuracy of this run is {:.2%}".format(calcAccuracy(conMatrix)))
