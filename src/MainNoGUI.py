@@ -25,22 +25,24 @@ def main():
 
     # Assumes Target 1
     pics     = 1
-    fileRRGB = "../../fake_microstructure/Target_1/image_"
-    fileMask = "../../fake_microstructure/Target_1/p2mask_np_"
-    fileName = "../../fake_microstructure/Target_1/image_" + str(num) + ".png"
+    #fileRRGB = "../../fake_microstructure/Target_1/image_"
+    #fileMask = "../../fake_microstructure/Target_1/p2mask_np_"
+    fileName = "../../fake_microstructure/Target_2/image_" + str(num) + ".png"
 
-    readRGB     = genReadRGB(fileRRGB, pics)
-    mask        = genMask(fileMask, pics)
-    dataFrame   = genDataFrame(readRGB, mask)
+    # readRGB     = genReadRGB(fileRRGB, pics)
+    # mask        = genMask(fileMask, pics)
+    # dataFrame   = genDataFrame(readRGB, mask)
 
-    x_train, x_test, y_train, y_test = genTrainTest(dataFrame)
-    logmodel    = genLogModel(x_train, y_train)
+    # x_train, x_test, y_train, y_test = genTrainTest(dataFrame)
+    logmodel    = genLogModel()
     predictions = genPredictions(fileName, logmodel)
-    conMatrix   = genConMatrix(logmodel, x_test, y_test)
+    #conMatrix   = genConMatrix(logmodel, x_test, y_test)
 
-    writeGraynne(predictions)
+    fractionDark = writeGraynne(predictions)
 
-    print(conMatrix)
-    print("The accuracy of this run is {:.2%}".format(calcAccuracy(conMatrix)))
+    #print(conMatrix)
+    #print("The accuracy of this run is {:.2%}".format(calcAccuracy(conMatrix)))
+    print("The fraction of dark phase in the specified image is {:.3}, and the output has been written to: ".format(fractionDark))
+    print("\t../../DeltaHacks V/src/output.png")
 
 main()
