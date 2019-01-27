@@ -10,10 +10,11 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
 
 from DataFrame import genDataFrame
+from Confusion import calcAccuracy
 
 readRGB     = []
 solvedCat   = []
-numOfPics   = 20
+numOfPics   = 1
 def readGraynne(image_name):
     img = Image.open(image_name, 'r').convert('I')
     data = asarray(img)
@@ -39,4 +40,6 @@ logmodel = LogisticRegression()
 logmodel.fit(x_train, y_train)
 predictions = logmodel.predict(x_test)
 
-print(confusion_matrix(y_test, predictions))
+conMatrix = confusion_matrix(y_test, predictions)
+print(conMatrix)
+print("The accuracy of this run is {:.2%}".format(calcAccuracy(conMatrix)))
