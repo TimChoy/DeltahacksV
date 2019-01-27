@@ -76,3 +76,5 @@ pixelsFrame['difRight'] = diffRight(readRGB)
 
 #pixelsFrame['difUpRight'].head(5)
 pixelsFrame['difRight']
+
+pixelsFrame.to_csv("output.csv", sep="\t", encoding="utf-8")
