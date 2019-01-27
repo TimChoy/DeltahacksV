@@ -60,12 +60,28 @@ def genDataFrame(readRGB, solvedCat):
 
     return pixelsFrame
 
+def genImageDataFrame(readRGB):
+    pixels_dict = {}
+    pixelsFrame = DataFrame(pixels_dict)
+
+    pixelsFrame['originalRGB'] = readRGB
+    pixelsFrame['diffFiveUp']    = fiveUp(readRGB)
+    pixelsFrame['diffTenUp']     = tenUp(readRGB)
+    pixelsFrame['diffFiveLeft']  = fiveLeft(readRGB)
+    pixelsFrame['diffTenLeft']   = tenLeft(readRGB)
+    pixelsFrame['diffFiveRight'] = fiveRight(readRGB)
+    pixelsFrame['diffTenRight']  = tenRight(readRGB)
+    pixelsFrame['diffFiveDown']  = fiveDown(readRGB)
+    pixelsFrame['diffTenDown']   = tenDown(readRGB)
+
+    return pixelsFrame
+
 def category(data):
     if data > 30000:
         return 1
     else:
         return 0
-    
+
 def categoryYo(data):
     if (data > -3000 and data < 3000):
         return 2
