@@ -3,7 +3,7 @@
 
 from pandas import DataFrame
 
-from diffs import *
+from DiffCalc import *
 
 def genDataFrame(readRGB, solvedCat):
     pixels_dict = {}
